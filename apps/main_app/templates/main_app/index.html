@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Pet App</title>
+</head>
+<body>
+        Welcome {{request.session.first_name}} | <a href="/logout">Logout</a>
+                <h3>Your Pets</h3>
+        {%for pet in myPets.pets.all%}
+               <p>{{pet.name}} the {{pet.kind}} <a href="/delete/{{pet.id}}">Delete</a> </p> 
+                {%endfor%}
+
+        
+       <p> <a href="/addPet">Add a pet!</a> </p>
+
+       <h3>Other Users:</h3>
+        <table>
+               
+                <tr>
+                        <th>Action</th>
+                        <th>Owner Name</th>
+                        <th>Total Pets</th>
+                </tr>
+                {%for user in other_users%}
+                <tr>
+                        <th><a href="show/{{user.id}}">Show </a></th>
+                        <th>{{user.first_name}}</th>
+                        <th>{{user.pets.all.count}}</th>
+                </tr>
+                {%endfor%}
+        </table>
+                
+ 
+</body>
+</html>
